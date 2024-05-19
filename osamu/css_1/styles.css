@@ -1,29 +1,35 @@
-<?php
-
-require_once 'config2.php';
-
-$c = 11;
-$o = 0;
-if (isset($_GET['count'])) $c = intval($_GET['count']);
-if ($c > 11) $c = 11;
-if (isset($_GET['offset'])) $o = intval($_GET['offset']);
-
-$sql = sprintf('SELECT `id`, `title`, `description`, `director`, `year`, `logo` FROM `videos` LIMIT %d OFFSET %d', $c, $o);
-$videos = $conn->query($sql);
-
-$result = '{"videos": [';
-foreach ($videos as $row){
-$id = $row['id'];
-$title = $row['title'];
-$description = $row['description'];
-$director = $row['director'];
-$year = $row['year'];
-$logo = $row['logo'];
-
-$result .= sprintf('{"id": %d, "title": "%s", "description": "%s", "director":%s, "year":%d, "logo": "%s"},', $id, $title, $description, $director, $year, $logo);
+#videos {
+	display: grid;
+	grid-template:  1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
 }
-$result = rtrim($result, ',');
-$result .= ']}';
 
-echo $result;
-?>
+#videos > div {
+	padding: 10px;
+	text-align: justify;
+}
+
+img {
+    max-width: 100%;
+    width: 100%;
+}
+
+h1 {
+	height: 80px;
+	color: white;
+	background-color: rgb(7, 38, 95);
+	padding: 10px 100px;
+	font-size:30px;
+}
+
+.wrapper{
+    width: 1400px;
+    margin: 0 auto;
+}
+
+p{
+	height: 80px;
+	color: white;
+	background-color: rgb(7, 38, 95);
+	padding: 10px 100px;
+	font-size:30px;
+}
